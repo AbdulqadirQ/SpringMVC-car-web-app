@@ -3,6 +3,7 @@ package com.fdmgroup.daotest;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class WebsiteUserDAOtest {
 	@Test
 	public void test_usersListReturnsEmptyList(){
 		
-		ArrayList<WebsiteUser> users = userDao.getUserList();	
+		List<WebsiteUser> users = userDao.getUserList();	
 		
 		assertEquals(0, users.size());
 		
@@ -49,7 +50,7 @@ public class WebsiteUserDAOtest {
 	public void test_usersListReturnsSizeOneWhenOneItemIsAdded(){		
 		WebsiteUser user = new WebsiteUser();
 		
-		ArrayList<WebsiteUser> users = userDao.addUserToList(user);
+		List<WebsiteUser> users = userDao.addUserToList(user);
 		
 		assertEquals(1, users.size());		
 	}
@@ -59,7 +60,7 @@ public class WebsiteUserDAOtest {
 		WebsiteUser user1 = new WebsiteUser();
 		WebsiteUser user2 = new WebsiteUser();
 		
-		ArrayList<WebsiteUser> users = userDao.addUserToList(user1);
+		List<WebsiteUser> users = userDao.addUserToList(user1);
 		users = userDao.addUserToList(user2);
 		
 		assertEquals(2, users.size());		
@@ -69,7 +70,7 @@ public class WebsiteUserDAOtest {
 	public void test_usersListReturnsSizeZeroWhenOneItemIsaddedThenRemoved(){		
 		WebsiteUser user = new WebsiteUser();
 		
-		ArrayList<WebsiteUser> users = userDao.addUserToList(user);
+		List<WebsiteUser> users = userDao.addUserToList(user);
 		users = userDao.removeUserFromList(user);
 		
 		
@@ -80,7 +81,7 @@ public class WebsiteUserDAOtest {
 	public void test_usersListReturnsSizOneWhenOneUserObjectIsaddedThenANonExistentUserObjectIsRemoved(){		
 		WebsiteUser user1 = new WebsiteUser();
 		
-		ArrayList<WebsiteUser> users = userDao.addUserToList(user1);
+		List<WebsiteUser> users = userDao.addUserToList(user1);
 		
 		WebsiteUser user2 = new WebsiteUser();
 		users = userDao.removeUserFromList(user2);		

@@ -37,7 +37,9 @@ public class WebsiteUserDAO {
 
 	// creates user in database
 	public void createUser(WebsiteUser user) {
+		entityTransaction.begin();
 		em.persist(user);
+		entityTransaction.commit();
 	}
 
 	public List<WebsiteUser> removeUserFromList(WebsiteUser user) {

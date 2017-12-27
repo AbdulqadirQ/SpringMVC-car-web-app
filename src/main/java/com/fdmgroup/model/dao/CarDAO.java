@@ -1,29 +1,35 @@
 package com.fdmgroup.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.fdmgroup.model.Car;
+import com.fdmgroup.model.WebsiteUser;
 
 public class CarDAO {
 
 	private EntityManager em;
 	EntityTransaction entityTransaction;
-	private ArrayList<Car> carList = new ArrayList();
+	private List<Car> carList;
 	
 	public CarDAO(EntityManager entityManager, EntityTransaction entityTransaction) {
 		this.em = entityManager;
 		this.entityTransaction = entityTransaction;
 	}
 
-	public ArrayList<Car> getCarList() {
+	public List<Car> getCarList() {
+		
+		TypedQuery<Car> queryAllUsers = em.createQuery("SELECT p FROM Car p", Car.class);
+		carList = queryAllUsers.getResultList();
 		
 		return carList;
 	}
 
-	public ArrayList<Car> addCarToList(Car car) {
+	public List<Car> addCarToList(Car car) {
 
 		entityTransaction.begin();
 		carList.add(car);
@@ -31,7 +37,7 @@ public class CarDAO {
 		return carList;
 	}
 
-	public ArrayList<Car> removeCarFromList(Car car) {
+	public List<Car> removeCarFromList(Car car) {
 
 		entityTransaction.begin();
 		carList.remove(car);
@@ -50,6 +56,12 @@ public class CarDAO {
 		}
 		return car;
 
+	}
+	
+	public void createCar(Car car) {
+		entityTransaction.begin();
+		em.persist(car);
+		entityTransaction.commit();
 	}
 
 	public Car updateCar(Car newcar) {

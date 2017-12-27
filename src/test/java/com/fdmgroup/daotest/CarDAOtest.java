@@ -3,6 +3,7 @@ package com.fdmgroup.daotest;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,7 +38,7 @@ public class CarDAOtest {
 	@Test
 	public void test_carListReturnsEmptyList(){
 		
-		ArrayList<Car> car = carDao.getCarList();	
+		List<Car> car = carDao.getCarList();	
 		entityManager.close();
 		entityManagerFactory.close();
 		assertEquals(0, car.size());
@@ -48,7 +49,7 @@ public class CarDAOtest {
 	public void test_carListReturnsSizeOneWhenOneItemIsAdded(){		
 		Car car = new Car();
 		
-		ArrayList<Car> carList = carDao.addCarToList(car);
+		List<Car> carList = carDao.addCarToList(car);
 		assertEquals(1, carList.size());		
 	}
 	
@@ -57,7 +58,7 @@ public class CarDAOtest {
 		Car car1 = new Car();
 		Car car2 = new Car();
 		
-		ArrayList<Car> carList = carDao.addCarToList(car1);
+		List<Car> carList = carDao.addCarToList(car1);
 		carList = carDao.addCarToList(car2);
 		
 		assertEquals(2, carList.size());		
@@ -67,7 +68,7 @@ public class CarDAOtest {
 	public void test_carListReturnsSizeZeroWhenOneItemIsaddedThenRemoved(){		
 		Car car = new Car();
 		
-		ArrayList<Car> carList = carDao.addCarToList(car);
+		List<Car> carList = carDao.addCarToList(car);
 		carList = carDao.removeCarFromList(car);
 		
 		assertEquals(0, carList.size());		
@@ -77,7 +78,7 @@ public class CarDAOtest {
 	public void test_carListReturnsSizOneWhenOneUserObjectIsaddedThenANonExistentUserObjectIsRemoved(){		
 		Car car1 = new Car();
 		
-		ArrayList<Car> carList = carDao.addCarToList(car1);
+		List<Car> carList = carDao.addCarToList(car1);
 		
 		Car car2 = new Car();
 		carList = carDao.removeCarFromList(car2);		

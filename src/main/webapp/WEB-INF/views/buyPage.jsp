@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
@@ -7,9 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>homepage</title>
+<title>Bid</title>
 <link rel="stylesheet"  type="text/css" href='<c:url value="/resources/css/homeStyle.css" />'>
-
 </head>
 <body>
 
@@ -21,22 +20,14 @@
 		<a href="register">Register</a>
 		<a href="listCar">List Your Car</a>
 	</div>
-	<input id="searchBar" type="text" name="search" placeholder="Search">
-	<h4>Fiter by:</h4>
-	<br/><br/><br/>
+
+	<input class="carImages" type="image"  src="<c:url value='/resources/images/${carIdSent.getCarId()}.PNG' />"/>
 	
-	<a href="uploadform">Upload Image</a>  
+	<h4>Make: ${carIdSent.getMake()}</h4>
+	<h4>Model: ${carIdSent.getCarModel()}</h4>
+
+	<h4>Mileage: ${carIdSent.getMileage()} miles</h4>
+	<h4>Rating: ${carIdSent.getCarRating()}/10</h4>
 	
-	<div class="col12 box">	
-		<c:forEach var="carItem" items="${carList}" varStatus="loop">
-			<form action="buyPage">
-				<input type="hidden" name="carId" value="${carItem.getCarId()}" />
-				<input class="carImages" type="image"  src="<c:url value='/resources/images/${carItem.getCarId()}.PNG' />" name="submit"/>
-			</form>			
-		</c:forEach>
-
-	</div>
-
-
 </body>
 </html>

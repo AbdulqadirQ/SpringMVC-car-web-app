@@ -8,11 +8,8 @@
 
 	<h1>Registration Successful</h1>
 	
-	You are now registered!!<BR>
-	
-	Username was: ${user.username} <BR>
-	Password was: ${user.password} <BR>
-	Email was: ${user.email} <BR>
+	Welcome ${user.username} <BR>
+	Email used: ${user.email} <BR>
 	
 
 </body>
